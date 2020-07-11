@@ -10,3 +10,16 @@ before-install:
 
 script:
     - docker run -e CI=true varunchillara/pokemondocker npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "pokemondocker"
+    env: "pokemondocker-env"
+    bucket-name: "elasticbeanstalk-us-east-1-696925498914"
+    bucket_path: "pokemondocker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    
