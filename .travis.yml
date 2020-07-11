@@ -1,0 +1,12 @@
+language: generic 
+sudo: required
+services:
+    - docker 
+
+
+before-install: 
+    - docker build -t varunchillara/pokemondocker -f Dockerfile.dev .
+
+
+script:
+    - docker run -e CI=true varunchillara/pokemondocker npm run test
